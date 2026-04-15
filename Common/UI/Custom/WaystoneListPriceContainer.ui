@@ -1,0 +1,22 @@
+$C = "Common.ui";
+
+$C.@Container {
+  Anchor: (Width: 300, Height: 120, Bottom: 50);
+
+  #Title {
+    Group {
+      $C.@Title {
+        @Text = "Price";
+      }
+    }
+  }
+
+  #Content {
+    Group #PriceContainer {
+        LayoutMode: Center;
+        Anchor: (Height: 90);
+        Padding: (Top: 10, Bottom: 10, Left: 10, Right: 10);
+        FlexWeight: 1;
+    }
+  }
+}

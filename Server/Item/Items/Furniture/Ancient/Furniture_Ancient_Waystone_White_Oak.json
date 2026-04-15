@@ -1,0 +1,113 @@
+{
+  "TranslationProperties": {
+    "Name": "items.Furniture_Ancient_Waystone.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Waystone_White_Oak.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "BlockType": {
+    "BlockParticleSetId": "Stone",
+    "BlockSoundSetId": "Stone",
+    "CustomModel": "Blocks/Decorative_Sets/Ancient/OakWaystone.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Decorative_Sets/Ancient/Waystone_Texture_White_Oak.png",
+        "Weight": 1
+      }
+    ],
+    "DrawType": "Model",
+    "Flags": {},
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Woods"
+      }
+    },
+    "HitboxType": "Statue_Full",
+    "Material": "Solid",
+    "Opacity": "Transparent",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "VariantRotation": "NESW",
+    "ParticleColor": "#9f9e81",
+    "IsDoor": true,
+    "Interactions": {
+      "Use": "Door"
+    },
+    "Particles": [
+      {
+        "SystemId": "Temple_Light_Lantern",
+        "PositionOffset": {
+          "Y": 0,
+          "X": 0,
+          "Z": 0
+        },
+        "TargetEntityPart": "Self",
+        "Color": "#fff",
+        "Scale": 2
+      },
+      {
+        "SystemId": "Earth_Brazier_Glow",
+        "Scale": 0.1,
+        "Color": "#fff",
+        "PositionOffset": {
+          "Y": 0.5
+        }
+      }
+    ],
+    "Light": {
+      "Radius": 5,
+      "Color": "#aaa"
+    }
+  },
+  "PlayerAnimationsId": "Block",
+  "Tags": {
+    "Type": [
+      "Furniture"
+    ],
+    "Family": [
+      "Ancient"
+    ]
+  },
+  "ItemLevel": 2,
+  "Recipe": {
+    "TimeSeconds": 3,
+    "Input": [
+      {
+        "ItemId": "Furniture_Ancient_Waystone_Oak",
+        "Quantity": 1
+      },
+      {
+        "ItemId": "Ingredient_Crystal_White",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Arcane_Portals"
+        ],
+        "Id": "Arcanebench"
+      }
+    ]
+  },
+  "ItemSoundSetId": "ISS_Blocks_Wood",
+  "IconProperties": {
+    "Scale": 0.29,
+    "Rotation": [
+      20,
+      48,
+      21
+    ],
+    "Translation": [
+      0,
+      -45
+    ]
+  }
+}

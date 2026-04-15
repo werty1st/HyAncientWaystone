@@ -1,0 +1,117 @@
+{
+  "TranslationProperties": {
+    "Name": "items.Furniture_Ancient_Waystone.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Waystone.png",
+  "Categories": [
+    "Furniture.Furniture"
+  ],
+  "BlockType": {
+    "BlockParticleSetId": "Stone",
+    "BlockSoundSetId": "Stone",
+    "CustomModel": "Blocks/Decorative_Sets/Ancient/Waystone.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Decorative_Sets/Ancient/Waystone_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "DrawType": "Model",
+    "Flags": {},
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Woods"
+      }
+    },
+    "HitboxType": "Statue_Full",
+    "Material": "Solid",
+    "Opacity": "Transparent",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "VariantRotation": "NESW",
+    "ParticleColor": "#9f9e81",
+    "IsDoor": true,
+    "Interactions": {
+      "Use": "Door"
+    },
+    "Particles": [
+      {
+        "SystemId": "Temple_Light_Lantern",
+        "PositionOffset": {
+          "Y": 0,
+          "X": 0,
+          "Z": 0
+        },
+        "TargetEntityPart": "Self",
+        "Color": "#963bae",
+        "Scale": 2
+      },
+      {
+        "SystemId": "Earth_Brazier_Glow",
+        "Scale": 0.1,
+        "Color": "#7418b7",
+        "PositionOffset": {
+          "Y": 0.5
+        }
+      }
+    ],
+    "Light": {
+      "Radius": 5,
+      "Color": "#93b"
+    }
+  },
+  "PlayerAnimationsId": "Block",
+  "Tags": {
+    "Type": [
+      "Furniture"
+    ],
+    "Family": [
+      "Ancient"
+    ]
+  },
+  "ItemLevel": 2,
+  "Recipe": {
+    "TimeSeconds": 3,
+    "Input": [
+      {
+        "ItemId": "Rock_Stone_Brick_Smooth_Half",
+        "Quantity": 2
+      },
+      {
+        "ItemId": "Rock_Stone_Brick_Smooth",
+        "Quantity": 10
+      },
+      {
+        "ItemId": "Ingredient_Void_Essence",
+        "Quantity": 10
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Workbench_Survival"
+        ],
+        "Id": "Workbench"
+      }
+    ]
+  },
+  "ItemSoundSetId": "ISS_Blocks_Wood",
+  "IconProperties": {
+    "Scale": 0.29,
+    "Rotation": [
+      20,
+      48,
+      21
+    ],
+    "Translation": [
+      0,
+      -45
+    ]
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "TranslationProperties": {
+    "Name": "items.Plant_Fruit_Warpberry.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Warpberry.png",
+  "Categories": [
+    "Items.Foods"
+  ],
+  "BlockType": {
+    "Material": "Empty",
+    "DrawType": "Model",
+    "Opacity": "Semitransparent",
+    "CustomModel": "Resources/Ingredients/Plant_Fruit_Warpberry.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Resources/Ingredients/Plant_Fruit_Warpberry.png"
+      }
+    ],
+    "HitboxType": "Plant_Medium",
+    "RandomRotation": "YawStep1",
+    "Gathering": {
+      "Harvest": {},
+      "Soft": {}
+    },
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        },
+        {
+          "TagId": "Family=Leaves"
+        }
+      ],
+      "Up": [
+        {
+          "TagId": "Family=Leaves"
+        }
+      ],
+      "CardinalDirections": [
+        {
+          "TagId": "Family=Leaves"
+        }
+      ]
+    },
+    "BlockParticleSetId": "Stone",
+    "BlockSoundSetId": "Stone",
+    "Group": "Stone",
+    "ParticleColor": "#222",
+    "CustomModelScale": 0.5
+  },
+  "ItemLevel": 0,
+  "ResourceTypes": [
+    {
+      "Id": "Fruits"
+    }
+  ],
+  "Utility": {
+    "Compatible": true
+  },
+  "PlayerAnimationsId": "Item",
+  "IconProperties": {
+    "Scale": 0.85,
+    "Translation": [
+      0,
+      -10.8
+    ],
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ]
+  },
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "Condition",
+          "RequiredGameMode": "Adventure",
+          "Crouching": false,
+          "Next": {
+            "Type": "Serial",
+            "Interactions": [
+              {
+                "Type": "Replace",
+                "Var": "ConsumeSFX",
+                "DefaultValue": {
+                  "Interactions": [
+                    "Consume_SFX"
+                  ]
+                }
+              },
+              {
+                "Type": "Replace",
+                "Var": "Consume_Charge",
+                "DefaultOk": true,
+                "DefaultValue": {
+                  "Interactions": [
+                    {
+                      "Type": "Charging",
+                      "FailOnDamage": true,
+                      "Effects": {
+                        "ItemAnimationId": "Consume",
+                        "ClearAnimationOnFinish": true,
+                        "ClearSoundEventOnFinish": true
+                      },
+                      "HorizontalSpeedMultiplier": 0.4,
+                      "Next": {
+                        "2.0": {
+                          "Type": "consume_warpberry"
+                        }
+                      },
+                      "Failed": {
+                        "Type": "Simple"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "Failed": "Block_Secondary"
+        }
+      ]
+    }
+  },
+  "InteractionConfig": {
+    "Priorities": {
+      "Secondary": 1
+    }
+  },
+  "Consumable": true,
+  "ItemSoundSetId": "ISS_Blocks_Wood",
+  "Scale": 1.5,
+  "Recipe": {
+    "TimeSeconds": 1.5,
+    "Input": [
+      {
+        "ItemId": "Plant_Fruit_Berries_Red",
+        "Quantity": 10
+      },
+      {
+        "ItemId": "Ingredient_Void_Essence",
+        "Quantity": 1
+      }
+    ],
+    "BenchRequirement": [
+      {
+        "Type": "Crafting",
+        "Categories": [
+          "Workbench_Survival"
+        ],
+        "Id": "Workbench"
+      }
+    ]
+  }
+}

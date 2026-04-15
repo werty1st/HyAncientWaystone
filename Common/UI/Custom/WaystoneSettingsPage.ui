@@ -1,0 +1,195 @@
+$C = "Common.ui";
+$Sounds = "Sounds.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer {
+    Anchor: (Width: 500);
+
+    #Title {
+      $C.@Title {
+        @Text = "Waystone Settings";
+      }
+    }
+
+    #Content {
+      Padding: (Vertical: 32, Horizontal: 45);
+      LayoutMode: Top;
+
+      // Name section
+      Label {
+        Text: "Waystone Name";
+        Style: (RenderBold: true, RenderUppercase: true, TextColor: #94a7bb);
+      }
+
+      Label {
+        Text: "Name displayed in the waystone list";
+        Style: (FontSize: 12, TextColor: #6a7a8a);
+        Anchor: (Top: 4);
+      }
+
+      $C.@TextField #NameInput {
+        Anchor: (Top: 8, Height: 44);
+      }
+
+      Label #Error {
+        Style: (RenderBold: true, TextColor: #bb3333);
+        Anchor: (Top: 4);
+        Visible: false;
+      }
+
+      // Visibility dropdown section
+      Group #Visibility {
+        LayoutMode: Top;
+        Anchor: (Top: 16);
+
+        Label {
+          Text: "Visibility";
+          Style: (RenderBold: true, RenderUppercase: true, TextColor: #94a7bb);
+        }
+
+        Label {
+          Text: "Who can see this waystone in the list";
+          Style: (FontSize: 12, TextColor: #6a7a8a);
+          Anchor: (Top: 4);
+        }
+
+        $C.@DropdownBox #Input {
+          @Anchor = (Top: 8, Left: 0, Height: 32, Width: 200);
+        }
+      }
+
+      // Network dropdown section (only visible when networks enabled)
+      Group #NetworkSection {
+        LayoutMode: Top;
+        Anchor: (Top: 16);
+        Visible: false;
+
+        Label {
+          Text: "Network";
+          Style: (RenderBold: true, RenderUppercase: true, TextColor: #94a7bb);
+        }
+
+        Label {
+          Text: "Which network this waystone belongs to";
+          Style: (FontSize: 12, TextColor: #6a7a8a);
+          Anchor: (Top: 4);
+        }
+
+        $C.@DropdownBox #NetworkInput {
+          @Anchor = (Top: 8, Left: 0, Height: 32, Width: 200);
+        }
+      }
+
+      // Player Orientation dropdown section
+      Group #OrientationSection {
+        LayoutMode: Top;
+        Anchor: (Top: 16);
+
+        Label {
+          Text: "Player Orientation";
+          Style: (RenderBold: true, RenderUppercase: true, TextColor: #94a7bb);
+        }
+
+        Label {
+          Text: "Direction players face when teleporting";
+          Style: (FontSize: 12, TextColor: #6a7a8a);
+          Anchor: (Top: 4);
+        }
+
+        $C.@DropdownBox #OrientationInput {
+          @Anchor = (Top: 8, Left: 0, Height: 32, Width: 200);
+        }
+      }
+
+      // Custom Teleport Position section (only visible when enabled via config)
+      Group #CustomTeleportSection {
+        LayoutMode: Top;
+        Anchor: (Top: 16);
+        Visible: false;
+
+        Label {
+          Text: "Custom Teleport Position";
+          Style: (RenderBold: true, RenderUppercase: true, TextColor: #94a7bb);
+        }
+
+        Label {
+          Text: "Override default teleport location (leave empty to use waystone position)";
+          Style: (FontSize: 12, TextColor: #6a7a8a);
+          Anchor: (Top: 4);
+        }
+
+        Group {
+          LayoutMode: Left;
+          Anchor: (Top: 8);
+
+          Group {
+            LayoutMode: Top;
+            Anchor: (Right: 8, Width: 80);
+
+            Label {
+              Text: "X";
+              Style: (FontSize: 12, TextColor: #6a7a8a);
+            }
+
+            $C.@TextField #CustomX {
+              Anchor: (Top: 4, Height: 36);
+            }
+          }
+
+          Group {
+            LayoutMode: Top;
+            Anchor: (Right: 8, Width: 80);
+
+            Label {
+              Text: "Y";
+              Style: (FontSize: 12, TextColor: #6a7a8a);
+            }
+
+            $C.@TextField #CustomY {
+              Anchor: (Top: 4, Height: 36);
+            }
+          }
+
+          Group {
+            LayoutMode: Top;
+            Anchor: (Right: 8, Width: 80);
+
+            Label {
+              Text: "Z";
+              Style: (FontSize: 12, TextColor: #6a7a8a);
+            }
+
+            $C.@TextField #CustomZ {
+              Anchor: (Top: 4, Height: 36);
+            }
+          }
+        }
+      }
+
+      // Buttons
+      Group {
+        LayoutMode: Center;
+        Anchor: (Top: 24);
+
+        $C.@TextButton #SaveButton {
+          @Sounds = $Sounds.@SaveSettings;
+          @Anchor = (Right: 4);
+          Text: "Save";
+          FlexWeight: 1;
+        }
+
+        $C.@SecondaryTextButton #CancelButton {
+          @Sounds = $Sounds.@ButtonsCancel;
+          @Anchor = (Left: 4);
+          Text: %server.customUI.cancel;
+          FlexWeight: 1;
+        }
+      }
+    }
+  }
+}
+
+$C.@BackButton {}
+

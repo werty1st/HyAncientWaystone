@@ -1,0 +1,22 @@
+{
+    "Group": "dev.jvnm",
+    "Name": "AncientWaystone",
+    "Version": "1.14.3",
+    "Description": "Add waystone to Hytale",
+    "Authors": [
+        {
+            "Name": "Jason Van Malder"
+        }
+    ],
+    "Website": "github.com/jvnm-dev",
+    "ServerVersion": "*",
+    "Dependencies": {
+        
+    },
+    "OptionalDependencies": {
+        
+    },
+    "DisabledByDefault": false,
+    "Main": "dev.jvnm.plugin.AncientWaystone",
+    "IncludesAssetPack": true
+}

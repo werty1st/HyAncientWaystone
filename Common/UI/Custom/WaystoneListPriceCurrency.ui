@@ -1,0 +1,18 @@
+$C = "Common.ui";
+
+Group {
+  Anchor: (Full: 0);
+  LayoutMode: Center;
+  
+  Label #PriceText {
+    Anchor: (Full: 0);
+    Style: (
+      FontSize: 16,
+      TextColor: #FFD700,
+      HorizontalAlignment: Center,
+      VerticalAlignment: Center,
+      RenderBold: true,
+    );
+    Text: "";
+  }
+}

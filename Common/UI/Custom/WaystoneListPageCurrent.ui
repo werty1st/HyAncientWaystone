@@ -1,0 +1,34 @@
+$C = "Common.ui";
+
+$C.@Container {
+  Anchor: (Width: 600, Height: 80, Top: 90);
+
+  #Title {
+    Group {
+      $C.@Title {
+        @Text = "Current location";
+      }
+    }
+  }
+
+  #Content {
+    LayoutMode: Center;
+
+    Label #Current {
+        Style: (
+            RenderBold: true,
+            HorizontalAlignment: Center,
+        );
+        FlexWeight: 1;
+        Padding: (Vertical: -8);
+        Text: "Test";
+    }
+
+    // Edit button for current waystone (visible for owner/OP)
+    $C.@SecondaryTextButton #EditCurrentButton {
+      Visible: false;
+      Text: "Edit";
+      Anchor: (Height: 32, Width: 90, Left: 10);
+    }
+  }
+}

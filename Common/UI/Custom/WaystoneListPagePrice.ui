@@ -1,0 +1,39 @@
+$C = "Common.ui";
+
+Group {
+  Anchor: (Width: 60, Height: 70);
+  LayoutMode: Top;
+  Padding: (Horizontal: 5, Vertical: 5);
+
+  Group #ItemBorder {
+    Anchor: (Width: 40, Height: 40);
+    Padding: 2;
+
+    ItemSlot #ItemIcon {
+      Anchor: (Full: 0, Height: 36, Width: 36);
+      ShowQualityBackground: true;
+      ShowQuantity: false;
+    }
+
+    Label #QuantityLabel {
+      Anchor: (Right: 2, Bottom: 2);
+      Style: (
+        FontSize: 12,
+        TextColor: #e2d8d8,
+        HorizontalAlignment: End,
+        VerticalAlignment: End,
+        RenderBold: true,
+      );
+      Text: "";
+    }
+  }
+
+  Label #Price {
+    Style: (
+      FontSize: 10,
+      RenderBold: false,
+      HorizontalAlignment: Center,
+    );
+    Padding: (Top: 2);
+  }
+}
