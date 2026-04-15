@@ -1,7 +1,7 @@
 {
     "Group": "dev.jvnm",
     "Name": "AncientWaystone",
-    "Version": "1.14.3",
+    "Version": "1.15.0",
     "Description": "Add waystone to Hytale",
     "Authors": [
         {
