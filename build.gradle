@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+}
+
+group = 'games.player.waystone'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "hytale"
+        url = uri("https://maven.hytale.com/release") // Or "hytale-pre-release" for pre-release versions
+    }
+}
+
+
+dependencies {
+    implementation("com.hypixel.hytale:Server:+")
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+
+jar {
+    archiveFileName = 'HyWaystone.jar'
+    manifest {
+        attributes(
+            'Implementation-Title': 'HyWaystone',
+            'Implementation-Version': '1.0.0',
+            'Created-By': 'tsukuyomi_089'
+        )
+    }
+    from('manifest.json') {
+        into('')
+    }
+}
