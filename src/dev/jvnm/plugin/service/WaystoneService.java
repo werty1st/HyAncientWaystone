@@ -32,6 +32,7 @@ import java.util.UUID;
 import java.util.function.Consumer;
 import javax.annotation.Nonnull;
 
+@SuppressWarnings("removal")
 public class WaystoneService {
    private static final String SFX_TELEPORT = "SFX_Portal_Neutral_Teleport_Local";
    private final WaystoneRepository waystoneRepository;
@@ -338,9 +339,29 @@ public class WaystoneService {
       List<PriceItem> priceItems = this.getEffectivePriceItems(network);
       if (priceItems.isEmpty()) {
          return true;
-      }
-      return false;
+      } else {
+         CombinedItemContainer container = player.getInventory().getCombinedStorageFirst();
 
+         for (PriceItem priceItem : priceItems) {
+            ItemStackTransaction tx = container.removeItemStack(new ItemStack(priceItem.getItemId(), priceItem.getAmount()));
+            if (!tx.succeeded()) {
+               StringBuilder message = new StringBuilder("You need the following items to warp: ");
+
+               for (int i = 0; i < priceItems.size(); i++) {
+                  PriceItem item = priceItems.get(i);
+                  message.append(item.getAmount()).append("x ").append(item.getItemId());
+                  if (i < priceItems.size() - 1) {
+                     message.append(", ");
+                  }
+               }
+
+               playerRef.sendMessage(Message.raw(message.toString()));
+               return false;
+            }
+         }
+
+         return true;
+      }
    }
 
    private boolean checkCooldown(Player player, PlayerRef playerRef, Network network) {

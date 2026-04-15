@@ -89,9 +89,35 @@ public class ConfigurationService {
    }
 
    public List<PriceItem> getPriceItems() {
-      return new ArrayList<>();
+      if (this.configData.get("price_items") instanceof List<?> rawList) {
+         List<PriceItem> priceItems = new ArrayList<>();
 
+         for (Object item : rawList) {
+            if (item instanceof Map) {
+               @SuppressWarnings("unchecked")
+               Map<String, Object> itemMap = (Map<String, Object>) item;
+               String itemId = (String) itemMap.get("itemId");
+               Object amountObj = itemMap.get("amount");
+               if (itemId != null && amountObj instanceof Number) {
+                  int amount = ((Number) amountObj).intValue();
+                  priceItems.add(new PriceItem(itemId, amount));
+               }
+            }
+         }
 
+         return priceItems;
+      } else {
+         String oldItemId = this.get("price_item_id");
+         Integer oldAmount = this.getInt("price_amount");
+         if (oldItemId != null && oldAmount != null && oldAmount > 0) {
+            List<PriceItem> migratedList = new ArrayList<>();
+            migratedList.add(new PriceItem(oldItemId, oldAmount));
+            this.setPriceItems(migratedList);
+            return migratedList;
+         } else {
+            return new ArrayList<>();
+         }
+      }
    }
 
    public void setPriceItems(List<PriceItem> priceItems) {
