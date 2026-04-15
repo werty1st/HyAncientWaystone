@@ -29,6 +29,7 @@ import dev.jvnm.plugin.service.WaystoneService;
 import java.util.List;
 import javax.annotation.Nonnull;
 
+@SuppressWarnings("removal")
 public class WaystoneSettingsPage extends InteractiveCustomUIPage<WaystoneSettingsPage.WaystoneSettingsEventData> {
    private static final String EVENT_VISIBILITY = "@VisibilityInput";
    private static final String EVENT_NETWORK = "@NetworkInput";
@@ -252,28 +253,18 @@ public class WaystoneSettingsPage extends InteractiveCustomUIPage<WaystoneSettin
 
    public static class WaystoneSettingsEventData {
       @Nonnull
-      public static final BuilderCodec<WaystoneSettingsPage.WaystoneSettingsEventData> CODEC = ((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)((Builder)BuilderCodec.builder(
-                                       WaystoneSettingsPage.WaystoneSettingsEventData.class, WaystoneSettingsPage.WaystoneSettingsEventData::new
-                                    )
-                                    .append(new KeyedCodec("@NameInput", Codec.STRING), (entry, s) -> entry.name = s, entry -> entry.name)
-                                    .add())
-                                 .append(new KeyedCodec("@VisibilityInput", Codec.STRING), (entry, s) -> entry.visibility = s, entry -> entry.visibility)
-                                 .add())
-                              .append(new KeyedCodec("@NetworkInput", Codec.STRING), (entry, s) -> entry.network = s, entry -> entry.network)
-                              .add())
-                           .append(new KeyedCodec("@OrientationInput", Codec.STRING), (entry, s) -> entry.orientation = s, entry -> entry.orientation)
-                           .add())
-                        .append(new KeyedCodec("@CustomX", Codec.STRING), (entry, s) -> entry.customX = s, entry -> entry.customX)
-                        .add())
-                     .append(new KeyedCodec("@CustomY", Codec.STRING), (entry, s) -> entry.customY = s, entry -> entry.customY)
-                     .add())
-                  .append(new KeyedCodec("@CustomZ", Codec.STRING), (entry, s) -> entry.customZ = s, entry -> entry.customZ)
-                  .add())
-               .append(new KeyedCodec("@Save", Codec.STRING), (entry, s) -> entry.save = s, entry -> entry.save)
-               .add())
-            .append(new KeyedCodec("Cancel", Codec.STRING), (entry, s) -> entry.cancel = s, entry -> entry.cancel)
-            .add())
-         .build();
+      public static final BuilderCodec<WaystoneSettingsPage.WaystoneSettingsEventData> CODEC = BuilderCodec
+              .builder(WaystoneSettingsPage.WaystoneSettingsEventData.class, WaystoneSettingsPage.WaystoneSettingsEventData::new)
+              .append(new KeyedCodec("@NameInput",        Codec.STRING), (entry, s) -> ((WaystoneSettingsEventData) entry).name        = (String) s, entry -> ((WaystoneSettingsEventData) entry).name)        .add()
+              .append(new KeyedCodec("@VisibilityInput",  Codec.STRING), (entry, s) -> ((WaystoneSettingsEventData) entry).visibility  = (String) s, entry -> ((WaystoneSettingsEventData) entry).visibility)  .add()
+              .append(new KeyedCodec("@NetworkInput",     Codec.STRING), (entry, s) -> ((WaystoneSettingsEventData) entry).network     = (String) s, entry -> ((WaystoneSettingsEventData) entry).network)     .add()
+              .append(new KeyedCodec("@OrientationInput", Codec.STRING), (entry, s) -> ((WaystoneSettingsEventData) entry).orientation = (String) s, entry -> ((WaystoneSettingsEventData) entry).orientation) .add()
+              .append(new KeyedCodec("@CustomX",          Codec.STRING), (entry, s) -> ((WaystoneSettingsEventData) entry).customX     = (String) s, entry -> ((WaystoneSettingsEventData) entry).customX)     .add()
+              .append(new KeyedCodec("@CustomY",          Codec.STRING), (entry, s) -> ((WaystoneSettingsEventData) entry).customY     = (String) s, entry -> ((WaystoneSettingsEventData) entry).customY)     .add()
+              .append(new KeyedCodec("@CustomZ",          Codec.STRING), (entry, s) -> ((WaystoneSettingsEventData) entry).customZ     = (String) s, entry -> ((WaystoneSettingsEventData) entry).customZ)     .add()
+              .append(new KeyedCodec("@Save",             Codec.STRING), (entry, s) -> ((WaystoneSettingsEventData) entry).save        = (String) s, entry -> ((WaystoneSettingsEventData) entry).save)        .add()
+              .append(new KeyedCodec("Cancel",            Codec.STRING), (entry, s) -> ((WaystoneSettingsEventData) entry).cancel      = (String) s, entry -> ((WaystoneSettingsEventData) entry).cancel)      .add()
+              .build();
       private String name;
       private String visibility;
       private String network;

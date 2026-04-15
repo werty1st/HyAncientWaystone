@@ -14,6 +14,7 @@ import dev.jvnm.plugin.permission.PermissionService;
 import dev.jvnm.plugin.service.WaystoneService;
 import javax.annotation.Nonnull;
 
+@SuppressWarnings("removal")
 public class BlockBreakSystem extends EntityEventSystem<EntityStore, BreakBlockEvent> {
    private final WaystoneService waystoneService;
    private final PermissionService permissionService;

@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.UUID;
 import javax.annotation.Nonnull;
 
+@SuppressWarnings("removal")
 public class WaystoneMarkerProvider implements MarkerProvider {
    public static final WaystoneMarkerProvider INSTANCE = new WaystoneMarkerProvider();
    private static final String MARKER_ICON = "Waystone.png";

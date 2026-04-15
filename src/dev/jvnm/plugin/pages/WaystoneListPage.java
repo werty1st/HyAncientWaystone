@@ -138,9 +138,9 @@ public class WaystoneListPage extends InteractiveCustomUIPage<WaystoneListPage.W
          commandBuilder.set("#NoWaystones.Visible", false);
          displayList.sort(Comparator.comparing(Waystone::getName));
 
-         for (int i = 0; i < displayList.size(); i++) {
-            String selector = "#WarpList[" + i + "]";
-            Waystone data = (Waystone)displayList.get(i);
+         for (int i2 = 0; i2 < displayList.size(); i2++) {
+            String selector = "#WarpList[" + i2 + "]";
+            Waystone data = (Waystone)displayList.get(i2);
             commandBuilder.append("#WarpList", "WaystoneEntryButton.ui");
             commandBuilder.set(selector + " #Name.Text", data.getName());
             String coords = data.getPosition().x + ", " + data.getPosition().y + ", " + data.getPosition().z;
@@ -289,20 +289,17 @@ public class WaystoneListPage extends InteractiveCustomUIPage<WaystoneListPage.W
       this.sendUpdate(commandBuilder, eventBuilder, false);
    }
 
+   @SuppressWarnings("unchecked")
    public static class WaystoneListPageEventData {
       @Nonnull
-      public static final BuilderCodec<WaystoneListPage.WaystoneListPageEventData> CODEC = ((Builder)((Builder)((Builder)((Builder)BuilderCodec.builder(
-                        WaystoneListPage.WaystoneListPageEventData.class, WaystoneListPage.WaystoneListPageEventData::new
-                     )
-                     .append(new KeyedCodec("Warp", Codec.STRING), (entry, s) -> entry.warp = s, entry -> entry.warp)
-                     .add())
-                  .append(new KeyedCodec("@VisibilityFilter", Codec.STRING), (entry, s) -> entry.visibilityFilter = s, entry -> entry.visibilityFilter)
-                  .add())
-               .append(new KeyedCodec("@NetworkFilter", Codec.STRING), (entry, s) -> entry.networkFilter = s, entry -> entry.networkFilter)
-               .add())
-            .append(new KeyedCodec("Edit", Codec.STRING), (entry, s) -> entry.edit = s, entry -> entry.edit)
-            .add())
-         .build();
+      public static final BuilderCodec<WaystoneListPage.WaystoneListPageEventData> CODEC = BuilderCodec
+              .builder(WaystoneListPage.WaystoneListPageEventData.class, WaystoneListPage.WaystoneListPageEventData::new)
+              .append(new KeyedCodec("Warp",              Codec.STRING), (entry, s) -> ((WaystoneListPageEventData) entry).warp             = (String) s, entry -> ((WaystoneListPageEventData) entry).warp)             .add()
+              .append(new KeyedCodec("@VisibilityFilter", Codec.STRING), (entry, s) -> ((WaystoneListPageEventData) entry).visibilityFilter = (String) s, entry -> ((WaystoneListPageEventData) entry).visibilityFilter) .add()
+              .append(new KeyedCodec("@NetworkFilter",    Codec.STRING), (entry, s) -> ((WaystoneListPageEventData) entry).networkFilter    = (String) s, entry -> ((WaystoneListPageEventData) entry).networkFilter)    .add()
+              .append(new KeyedCodec("Edit",              Codec.STRING), (entry, s) -> ((WaystoneListPageEventData) entry).edit             = (String) s, entry -> ((WaystoneListPageEventData) entry).edit)             .add()
+              .build();
+
       private String warp;
       private String visibilityFilter;
       private String networkFilter;

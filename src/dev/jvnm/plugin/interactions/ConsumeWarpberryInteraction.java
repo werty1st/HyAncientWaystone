@@ -26,6 +26,7 @@ public class ConsumeWarpberryInteraction extends SimpleInstantInteraction {
       .build();
    public static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
+   @SuppressWarnings("removal")
    protected void firstRun(
       @NonNullDecl InteractionType interactionType, @NonNullDecl InteractionContext interactionContext, @NonNullDecl CooldownHandler cooldownHandler
    ) {

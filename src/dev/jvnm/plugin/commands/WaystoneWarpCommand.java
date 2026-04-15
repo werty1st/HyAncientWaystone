@@ -23,6 +23,7 @@ import dev.jvnm.plugin.permission.PermissionService;
 import dev.jvnm.plugin.service.WaystoneService;
 import javax.annotation.Nonnull;
 
+@SuppressWarnings("removal")
 public class WaystoneWarpCommand extends AbstractPlayerCommand {
    private final WaystoneService waystoneService;
    private final PermissionService permissionService;
@@ -69,7 +70,7 @@ public class WaystoneWarpCommand extends AbstractPlayerCommand {
                   Player player = (Player)store.getComponent(ref, Player.getComponentType());
                   if (player != null) {
                      if ("use_warpberry".equals(flag)) {
-                        CombinedItemContainer container = player.getInventory().getCombinedEverything();
+                        CombinedItemContainer container = player.getInventory().getCombinedStorageFirst();
                         ItemStackTransaction tx = container.removeItemStack(new ItemStack("Plant_Fruit_Warpberry", 1));
                         if (!tx.succeeded()) {
                            playerRef.sendMessage(Message.raw("You need a Warpberry to use this marker!"));

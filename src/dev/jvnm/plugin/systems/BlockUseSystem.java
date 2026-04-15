@@ -19,6 +19,7 @@ import dev.jvnm.plugin.service.WaystoneService;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+@SuppressWarnings("removal")
 public class BlockUseSystem extends EntityEventSystem<EntityStore, Post> {
    private final WaystoneService waystoneService;
    private final DiscoveryService discoveryService;
