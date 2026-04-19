@@ -1,6 +1,7 @@
 package dev.jvnm.plugin.repository;
 
-import com.hypixel.hytale.math.vector.Vector3i;
+
+import org.joml.Vector3i;
 import dev.jvnm.plugin.model.Waystone;
 import java.util.List;
 import java.util.Optional;

@@ -8,6 +8,7 @@ import com.hypixel.hytale.component.system.EntityEventSystem;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.event.events.ecs.BreakBlockEvent;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import dev.jvnm.plugin.model.Waystone;
 import dev.jvnm.plugin.permission.PermissionService;
@@ -34,12 +35,14 @@ public class BlockBreakSystem extends EntityEventSystem<EntityStore, BreakBlockE
    ) {
       if (!event.isCancelled()) {
          Player player = (Player)archetypeChunk.getComponent(index, Player.getComponentType());
+         PlayerRef playerRef = (PlayerRef)archetypeChunk.getComponent(index, PlayerRef.getComponentType());
+
          if (player != null) {
             String blockKey = event.getBlockType().getId();
             if (blockKey != null && blockKey.contains("Furniture_Ancient_Waystone")) {
                if (!this.permissionService.hasPermission(player.getUuid(), "hytale.command.waystone.break")) {
                   event.setCancelled(true);
-                  player.sendMessage(Message.raw("You do not have permission to break waystones."));
+                  playerRef.sendMessage(Message.raw("You do not have permission to break waystones."));
                   return;
                }
 
@@ -49,7 +52,7 @@ public class BlockBreakSystem extends EntityEventSystem<EntityStore, BreakBlockE
                   boolean isOp = this.permissionService.isOp(player.getUuid());
                   if (!isOwner && !isOp) {
                      event.setCancelled(true);
-                     player.sendMessage(Message.raw("You do not have permission to break this waystone."));
+                     playerRef.sendMessage(Message.raw("You do not have permission to break this waystone."));
                      return;
                   }
                }

@@ -1,9 +1,9 @@
 package dev.jvnm.plugin.utils;
 
+import org.joml.Vector3i;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.math.util.ChunkUtil;
 import com.hypixel.hytale.math.util.MathUtil;
-import com.hypixel.hytale.math.vector.Vector3i;
 import com.hypixel.hytale.server.core.asset.type.blocktype.config.BlockType;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.chunk.WorldChunk;
@@ -17,9 +17,9 @@ public class SafeTeleportUtil {
          int[][] offsets = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
          for (int[] offset : offsets) {
-            int cx = targetPos.getX() + offset[0];
-            int cy = targetPos.getY();
-            int cz = targetPos.getZ() + offset[1];
+            int cx = targetPos.x() + offset[0];
+            int cy = targetPos.y();
+            int cz = targetPos.z() + offset[1];
             if (isSpotSafe(world, cx, cy, cz)) {
                Vector3i safePos = new Vector3i(cx, cy, cz);
                LOGGER.at(Level.FINE).log("Found safe spot at %s", safePos);
@@ -27,20 +27,20 @@ public class SafeTeleportUtil {
             }
          }
 
-         long chunkIndex = ChunkUtil.indexChunkFromBlock(targetPos.getX(), targetPos.getZ());
+         long chunkIndex = ChunkUtil.indexChunkFromBlock(targetPos.x(), targetPos.z());
          WorldChunk worldChunk = world.getChunkIfInMemory(chunkIndex);
          if (worldChunk != null) {
-            int x = MathUtil.floor(targetPos.getX());
-            int z = MathUtil.floor(targetPos.getZ());
+            int x = MathUtil.floor(targetPos.x());
+            int z = MathUtil.floor(targetPos.z());
             int topHeight = worldChunk.getHeight(x, z);
-            if (topHeight > targetPos.getY()) {
-               Vector3i topPos = new Vector3i(targetPos.getX(), topHeight + 2, targetPos.getZ());
+            if (topHeight > targetPos.y()) {
+               Vector3i topPos = new Vector3i(targetPos.x(), topHeight + 2, targetPos.z());
                LOGGER.at(Level.FINE).log("Waystone obscured/buried. Teleporting to top surface: %s", topPos);
                return topPos;
             }
          }
 
-         return new Vector3i(targetPos.getX() + 1, targetPos.getY() + 1, targetPos.getZ());
+         return new Vector3i(targetPos.x() + 1, targetPos.y() + 1, targetPos.z());
       } else {
          return targetPos;
       }

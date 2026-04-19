@@ -6,21 +6,27 @@ group = 'games.player.AncientWaystone'
 version = '1.0.0'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_24
+    targetCompatibility = JavaVersion.VERSION_24
 }
+
+def patchline = project.findProperty("hytale.patchline") ?: "stable"
+def hytaleVersion = patchline == "pre-release" ? "2026.04.17-c2d518cc9" : "+"
 
 repositories {
     mavenCentral()
     maven {
         name = "hytale"
-        url = uri("https://maven.hytale.com/release") // Or "hytale-pre-release" for pre-release versions
+        url = uri(patchline == "pre-release"
+                ? "https://maven.hytale.com/pre-release"
+                : "https://maven.hytale.com/release")
     }
 }
 
-
 dependencies {
-    implementation("com.hypixel.hytale:Server:+")
+    //implementation("com.hypixel.hytale:Server:+")
+    implementation "com.hypixel.hytale:Server:${hytaleVersion}"
+    //implementation "com.hypixel.hytale:Server:2026.04.17-c2d518cc9"
     implementation 'com.google.code.gson:gson:2.10.1'
 
 }

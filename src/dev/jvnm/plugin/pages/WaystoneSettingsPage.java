@@ -1,12 +1,11 @@
 package dev.jvnm.plugin.pages;
 
+import org.joml.Vector3i;
 import com.hypixel.hytale.codec.Codec;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
-import com.hypixel.hytale.codec.builder.BuilderCodec.Builder;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
-import com.hypixel.hytale.math.vector.Vector3i;
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
 import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType;
 import com.hypixel.hytale.protocol.packets.interface_.Page;
@@ -78,9 +77,9 @@ public class WaystoneSettingsPage extends InteractiveCustomUIPage<WaystoneSettin
       this.pendingOrientation = String.valueOf((int)waystone.getFacingYaw());
       if (waystone.hasCustomTeleportPos()) {
          Vector3i pos = waystone.getCustomTeleportPos();
-         this.pendingCustomX = String.valueOf(pos.getX());
-         this.pendingCustomY = String.valueOf(pos.getY());
-         this.pendingCustomZ = String.valueOf(pos.getZ());
+         this.pendingCustomX = String.valueOf(pos.x());
+         this.pendingCustomY = String.valueOf(pos.y());
+         this.pendingCustomZ = String.valueOf(pos.z());
       } else {
          this.pendingCustomX = "";
          this.pendingCustomY = "";
