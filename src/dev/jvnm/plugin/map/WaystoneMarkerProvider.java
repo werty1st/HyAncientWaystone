@@ -1,7 +1,7 @@
 package dev.jvnm.plugin.map;
 
+import org.joml.Vector3d;
 import com.hypixel.hytale.math.vector.Transform;
-import com.hypixel.hytale.math.vector.Vector3d;
 import com.hypixel.hytale.protocol.packets.worldmap.ContextMenuItem;
 import com.hypixel.hytale.protocol.packets.worldmap.MapMarker;
 import com.hypixel.hytale.server.core.Message;
@@ -43,15 +43,15 @@ public class WaystoneMarkerProvider implements MarkerProvider {
 
       for (Waystone waystone : waystones) {
          if (waystone.getWorldName() != null && worldName.equals(waystone.getWorldName())) {
-            Vector3d position = new Vector3d(waystone.getPosition().getX() + 0.5, waystone.getPosition().getY(), waystone.getPosition().getZ() + 0.5);
+            Vector3d position = new Vector3d(waystone.getPosition().x() + 0.5, waystone.getPosition().y(), waystone.getPosition().z() + 0.5);
             String markerId = "ws_mk_" + waystone.getName();
             Transform transform = new Transform(position);
             String command = "waystone warp "
-               + waystone.getPosition().getX()
+               + waystone.getPosition().x()
                + " "
-               + waystone.getPosition().getY()
+               + waystone.getPosition().y()
                + " "
-               + waystone.getPosition().getZ()
+               + waystone.getPosition().z()
                + " --flag=use_warpberry";
             MapMarker marker = new MapMarkerBuilder(markerId, "Waystone.png", transform)
                .withName(Message.raw(waystone.getName()))

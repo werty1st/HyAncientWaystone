@@ -1,6 +1,7 @@
 package dev.jvnm.plugin.model;
 
-import com.hypixel.hytale.math.vector.Vector3i;
+
+import org.joml.Vector3i;
 import javax.annotation.Nullable;
 
 public class Waystone {

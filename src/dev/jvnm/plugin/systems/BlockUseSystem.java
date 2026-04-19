@@ -9,6 +9,7 @@ import com.hypixel.hytale.component.system.EntityEventSystem;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.event.events.ecs.UseBlockEvent.Post;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import dev.jvnm.plugin.model.Waystone;
@@ -45,13 +46,15 @@ public class BlockUseSystem extends EntityEventSystem<EntityStore, Post> {
    ) {
       Ref<EntityStore> ref = useBlockEvent.getContext().getEntity();
       Player player = (Player)store.getComponent(ref, Player.getComponentType());
+      PlayerRef playerRef = (PlayerRef)store.getComponent(ref, PlayerRef.getComponentType());
+
       if (player != null) {
          World world = player.getWorld();
          if (world != null) {
             String blockKey = useBlockEvent.getBlockType().getId();
             if (blockKey.contains("Furniture_Ancient_Waystone")) {
                if (!this.permissionService.hasPermission(player.getUuid(), "hytale.command.waystone.use")) {
-                  player.sendMessage(Message.raw("You do not have permission to use waystones."));
+                  playerRef.sendMessage(Message.raw("You do not have permission to use waystones."));
                   return;
                }
 
@@ -60,19 +63,19 @@ public class BlockUseSystem extends EntityEventSystem<EntityStore, Post> {
                if (waystone == null) {
                   String worldName = world != null ? world.getName() : "default";
                   waystone = this.waystoneService.getOrCreate(useBlockEvent.getTargetBlock(), null, true, worldName);
-                  player.sendMessage(Message.raw("You discovered a new Waystone: " + waystone.getName()));
+                  playerRef.sendMessage(Message.raw("You discovered a new Waystone: " + waystone.getName()));
                   this.discoveryService.discoverWaystone(playerUuid, waystone.getName());
                } else {
                   boolean discoveryEnabled = this.configurationService.get("discovery_enabled", false);
                   if (discoveryEnabled && !this.discoveryService.hasDiscovered(playerUuid, waystone.getName()) && !playerUuid.equals(waystone.getOwnerUuid())) {
                      this.discoveryService.discoverWaystone(playerUuid, waystone.getName());
-                     player.sendMessage(Message.raw("You have discovered: " + waystone.getName()));
+                     playerRef.sendMessage(Message.raw("You have discovered: " + waystone.getName()));
                   }
                }
 
                boolean isOp = this.permissionService.isOp(player.getUuid());
                if (!this.waystoneService.isVisibleTo(waystone, playerUuid) && !isOp) {
-                  player.sendMessage(Message.raw("You do not have permission to use this waystone."));
+                  playerRef.sendMessage(Message.raw("You do not have permission to use this waystone."));
                } else {
                   this.waystoneService.openWaystoneListPage(store, player.getReference(), waystone.getName(), var0 -> {});
                }

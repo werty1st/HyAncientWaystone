@@ -8,7 +8,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.reflect.TypeToken;
-import com.hypixel.hytale.math.vector.Vector3i;
+import org.joml.Vector3i;
 import dev.jvnm.plugin.model.Waystone;
 import dev.jvnm.plugin.utils.FileUtil;
 import java.io.IOException;
